@@ -3,15 +3,16 @@ title: "Homework 1"
 author: "Yuki Joyama"
 date: "2023-09-23"
 output: 
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_chunk$set(fig.width=5, fig.height=2) 
 ```
 
-## Problem 1
+# Problem 1
 
 a)  Qualitative, ordinal
 b)  Qualitative, binary
@@ -19,35 +20,84 @@ c)  Qualitative, ordinal
 d)  Quantitative, continuous
 e)  Quantitative, discrete
 
-## Problem 2
+# Problem 2
 
-a)  Descriptive summaries of the depression scores for 14 individuals in a study
+The depression scores for 14 individuals with a recent bike crash history (I will define this as group A):  
+45, 39, 25, 47, 49, 5, 70, 99, 74, 37, 99, 35, 8, 59
 
-```{r descriptive, cache = T}
+a)  Descriptive summaries 
+```{r descriptive, cache = T, echo=F}
 # data input
 depression_score <- c(45, 39, 25, 47, 49, 5, 70, 99, 74, 37, 99, 35, 8, 59)
 # calculate descriptive summaries
 range_score <- max(depression_score) - min(depression_score)
 ```
+Mean: $\sum_{i=1}^{14}\frac{x_i}{14}$ = `r round(mean(depression_score), digits = 2)`\
+Median: $(45+47)/2$ = `r round(median(depression_score), digits = 2)`\
+Range: $99-5$ = `r round(range_score, digits = 2)`\
+SD: $\sqrt{\frac{1}{14-1} \sum_{i=1}^{14} (x_i - \overline{x})^2}$ = `r round(sd(depression_score), digits = 2)`
 
-Mean: `r round(mean(depression_score), digits = 2)`\
-Median: `r round(median(depression_score), digits = 2)`\
-Range: `r round(range_score, digits = 2)`\
-SD: `r round(sd(depression_score), digits = 2)`
+b)  Box plot of the depression scores of group A
 
-b)  Box plot of the depression scores of 14 individuals
+The box plot shows right-skewed, unimodal distribution.
 
-``` {r plot, cache = T}
+``` {r plot, cache = T, echo = F}
 library(ggplot2)
 # create a box plot 
 ggplot() +
   geom_boxplot(aes(y = depression_score)) +
   scale_x_discrete() +
-  labs(title = "The depression scores of 14 individuals", 
-       y = "The depression score") +
+  labs(y = "The depression score") +
   coord_flip()
 ```
 
+The depression scores for 13 individuals with a recent car crash history (I will define this as group B):  
+67, 50, 85, 43, 64, 35, 47, 97, 58, 58, 10, 56, 50
+
+```{r additional, cache = T, echo=F}
+# data input
+depression_score_1 <- data.frame(score = depression_score, group = "A")
+depression_score_2 <- c(67, 50, 85, 43, 64, 35, 47, 97, 58, 58, 10, 56, 50) 
+depression_score_2 <- data.frame(score = depression_score_2, group = "B")
+df <- rbind(depression_score_1, depression_score_2)
+```
+
+a) Side-by-side box plot of the depression scores stratified by type of accident 
+
+``` {r newplot, cache = T, echo = F}
+library(ggplot2)
+# create a box plot 
+ggplot(df, aes(x = group, y = score)) + 
+  geom_boxplot() +
+  labs(x = "Group",y = "The depression score") +
+  coord_flip()
+```
+
+b) Based on the box plot, group A appears to have right-skewed, unimodal distribution while group B has left-skewed, unimodal distribution.
+This is also supported by the fact mean > median in group A and mean < median in group B.
+
+c) Judging from the box plot, group A appears to have a lower typical depression score. 
+
+# Problem 3 
+Tossing one fair 12-sided die.
+
+a) event A: an even number appears  
+Let $\Omega$ = {1, 2, ..., 12}  
+Let A = {2, 4, 6, 8, 10, 12}, $A \subset \Omega$  
+P(A) = $\frac{6}{12}$ = $\frac{1}{2}$  
+
+b) event B: number 10 appears
+Let $\Omega$ = {1, 2, ..., 12}  
+Let B = {10}, $A \subset \Omega$  
+P(B) = $\frac{1}{12}$
+
+c) $P(B \cup A)= P(A) + P(B) - P(B \cap A)$  
+$P(B \cap A)$ is the probability of number 10 appears (which is also an even number), so $P(B \cap A) = \frac{1}{12}$  
+Therefore, 
+$P(B \cup A)= P(A) + P(B) - P(B \cap A)=\frac{1}{2}+\frac{1}{12}-\frac{1}{12}=\frac{1}{2}$
+
+d) If event A and event B are independent, $P(A \cap B)$ should be equal to $P(A) P(B)$.  
+Now, given $P(A) P(B)=\frac{1}{2}\times\frac{1}{12}=\frac{1}{24}\neq P(A \cap B)$, we can say that these two events are not independent.
 
 
 

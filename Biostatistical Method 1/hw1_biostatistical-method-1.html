@@ -371,16 +371,17 @@ display: none;
 <h2>Problem 2</h2>
 <ol style="list-style-type: lower-alpha">
 <li>Descriptive summaries of the depression scores for 14 individuals in
-a study</li>
+a study:</li>
 </ol>
-<pre class="r"><code># data input
-depression_score &lt;- c(45, 39, 25, 47, 49, 5, 70, 99, 74, 37, 99, 35, 8, 59)
-# calculate descriptive summaries
-range_score &lt;- max(depression_score) - min(depression_score)</code></pre>
-<p>Mean: 49.36<br />
-Median: 46<br />
-Range: 94<br />
-SD: 28.85</p>
+<p>Mean: <span class="math inline">\(\sum_{i=1}^{14}\frac{x_i}{14}\)</span> =
+49.36<br />
+</p>
+<p>Median: <span class="math inline">\((45+47)/2\)</span> = 46<br />
+</p>
+<p>Range: <span class="math inline">\(99-5\)</span> = 94<br />
+</p>
+<p>SD: <span class="math inline">\(\sqrt{\frac{1}{14-1} \sum_{i=1}^{14}
+(x_i - \overline{x})^2}\)</span> = 28.85</p>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Box plot of the depression scores of 14 individuals</li>
 </ol>
