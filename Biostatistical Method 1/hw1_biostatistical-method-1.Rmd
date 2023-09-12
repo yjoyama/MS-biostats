@@ -9,7 +9,7 @@ urlcolor: blue
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE) 
 ```
 
 ## Problem 1
@@ -18,3 +18,26 @@ b) Qualitative, binary
 c) Qualitative, ordinal
 d) Quantitative, continuous
 e) Quantitative, discrete
+
+## Problem 2
+``` {r scores, cache = T, echo = F}
+depression_score <- c(45, 39, 25, 47, 49, 5, 70, 99, 74, 37, 99, 35, 8, 59)
+```
+
+a) Descriptive summaries of the depression scores for 14 individuals in a study
+``` {r descriptive, cache = T}
+mean_score <- mean(depression_score)
+median_score <- median(depression_score)
+range_score <- max(depression_score) - min(depression_score)
+sd_score <- sd(depression_score)
+```
+Mean: `r round(mean_score, digits = 2)`  
+Median: `r round(median_score, digits = 2)`  
+Range: `r round(range_score, digits = 2)`  
+SD: `r round(sd_score, digits = 2)`  
+
+b) 
+
+
+
+
