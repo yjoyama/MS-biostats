@@ -8,7 +8,7 @@ output:
 urlcolor: blue
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE) 
 ```
 
@@ -22,13 +22,10 @@ e)  Quantitative, discrete
 
 ## Problem 2
 
-```{r scores, cache = T, echo = F}
-depression_score <- c(45, 39, 25, 47, 49, 5, 70, 99, 74, 37, 99, 35, 8, 59)
-```
-
 a)  Descriptive summaries of the depression scores for 14 individuals in a study
 
 ```{r descriptive, cache = T}
+depression_score <- c(45, 39, 25, 47, 49, 5, 70, 99, 74, 37, 99, 35, 8, 59)
 mean_score <- mean(depression_score)
 median_score <- median(depression_score)
 range_score <- max(depression_score) - min(depression_score)
