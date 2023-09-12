@@ -22,7 +22,7 @@ e)  Quantitative, discrete
 
 ## Problem 2
 
-```{r scores, cache = T, echo = F}
+```{r scores, cache = T}
 depression_score <- c(45, 39, 25, 47, 49, 5, 70, 99, 74, 37, 99, 35, 8, 59)
 ```
 
