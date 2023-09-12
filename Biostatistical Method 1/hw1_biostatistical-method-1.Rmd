@@ -99,6 +99,9 @@ $P(B \cup A)= P(A) + P(B) - P(B \cap A)=\frac{1}{2}+\frac{1}{12}-\frac{1}{12}=\f
 d) If event A and event B are independent, $P(A \cap B)$ should be equal to $P(A) P(B)$.  
 Now, given $P(A) P(B)=\frac{1}{2}\times\frac{1}{12}=\frac{1}{24}\neq P(A \cap B)$, we can say that these two events are not independent.
 
+# Problem 4
+5% of women above age of 75 have dementia. Among women (75+ years old) with dementia, 80% have positive findings on their CT scan. Among women (75+ years old) who don’t have dementia, 10% will have a positive CT scan findings. A randomly-selected woman (75+ years old) had a positive CT scan findings.  
+What is the probability that she actually has dementia? 
 
 
 
