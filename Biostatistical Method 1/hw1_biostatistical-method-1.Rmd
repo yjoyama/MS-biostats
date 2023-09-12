@@ -27,16 +27,13 @@ a)  Descriptive summaries of the depression scores for 14 individuals in a study
 # data input
 depression_score <- c(45, 39, 25, 47, 49, 5, 70, 99, 74, 37, 99, 35, 8, 59)
 # calculate descriptive summaries
-mean_score <- mean(depression_score)
-median_score <- median(depression_score)
 range_score <- max(depression_score) - min(depression_score)
-sd_score <- sd(depression_score)
 ```
 
-Mean: `r round(mean_score, digits = 2)`\
-Median: `r round(median_score, digits = 2)`\
+Mean: `r round(mean(depression_score), digits = 2)`\
+Median: `r round(median(depression_score), digits = 2)`\
 Range: `r round(range_score, digits = 2)`\
-SD: `r round(sd_score, digits = 2)`
+SD: `r round(sd(depression_score), digits = 2)`
 
 b)  Box plot of the depression scores of 14 individuals
 
