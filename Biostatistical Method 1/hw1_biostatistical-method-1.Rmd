@@ -42,8 +42,14 @@ SD: `r round(sd_score, digits = 2)`
 b)  Box plot of the depression scores of 14 individuals
 
 ``` {r plot, cache = T}
+library(ggplot2)
 # create a box plot 
-boxplot(depression_score, main = "The depression scores of 14 individuals", ylab = "The depression score")
+ggplot() +
+  geom_boxplot(aes(y = depression_score)) +
+  scale_x_discrete() +
+  labs(title = "The depression scores of 14 individuals", 
+       y = "The depression score") +
+  coord_flip()
 ```
 
 
