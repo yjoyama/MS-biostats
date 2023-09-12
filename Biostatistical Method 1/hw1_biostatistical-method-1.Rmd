@@ -43,7 +43,7 @@ b)  Box plot of the depression scores of 14 individuals
 
 ``` {r plot, cache = T}
 # create a box plot 
-p_box <- boxplot(depression_score, ylab = "The depression score")
+p_box <- boxplot(depression_score, main = "The depression scores of 14 individuals", ylab = "The depression score")
 ```
 
 
