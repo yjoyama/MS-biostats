@@ -38,8 +38,11 @@ Range: $99-5$ = `r round(range_score, digits = 2)`\
 SD: $\sqrt{\frac{1}{14-1} \sum_{i=1}^{14} (x_i - \overline{x})^2}$ = `r round(sd(depression_score), digits = 2)`
 
 b)  Box plot of the depression scores of group A
+```{r histogram, eval=F, echo=F}
+hist(depression_score)
+```
 
-The box plot shows right-skewed, unimodal distribution.
+The box plot and histogram (plot not shown) indicate right-skewed, unimodal distribution.
 
 ``` {r plot, cache = T, echo = F}
 library(ggplot2)
@@ -73,8 +76,12 @@ ggplot(df, aes(x = group, y = score)) +
   coord_flip()
 ```
 
-b) Based on the box plot, group A appears to have right-skewed, unimodal distribution while group B has left-skewed, unimodal distribution.
+b) Based on the box plot and histogram (plot not shown), group A appears to have right-skewed, unimodal distribution while group B has left-skewed, unimodal distribution.
 This is also supported by the fact mean > median in group A and mean < median in group B.
+
+```{r histogram2, echo=F, eval=F}
+hist(depression_score_2$score)
+```
 
 c) Judging from the box plot, group A appears to have a lower typical depression score. 
 
@@ -100,8 +107,16 @@ d) If event A and event B are independent, $P(A \cap B)$ should be equal to $P(A
 Now, given $P(A) P(B)=\frac{1}{2}\times\frac{1}{12}=\frac{1}{24}\neq P(A \cap B)$, we can say that these two events are not independent.
 
 # Problem 4
-5% of women above age of 75 have dementia. Among women (75+ years old) with dementia, 80% have positive findings on their CT scan. Among women (75+ years old) who don’t have dementia, 10% will have a positive CT scan findings. A randomly-selected woman (75+ years old) had a positive CT scan findings.  
-What is the probability that she actually has dementia? 
+
+Let A be having dementia and B be having positive CT scan findings.  
+5% of 75+ year-old women have dementia so $P(A)=0.05$   
+Among women with dementia, 80% have positive CT scan findings so $P(B|A)=\frac{P(B\cap A)}{P(A)}=0.8$  
+Given $P(A)=0.05$, $P(A\cap B)=0.04$  
+10% showed a positive CT scan findings among women who don't have dementia, and this gives $P(B|\bar{A})=\frac{P(B\cap \bar{A})}{P(\bar{A})}=0.1$   
+Given $P(\bar{A})=1-0.05=0.95$, $P(B\cap \bar{A})=0.095$  
+Now, $P(B)=P(A\cap B)+P(\bar{A} \cap B)=0.04+0.095=0.135$  
+Therefore, the probability of a woman with a positive CT scan findings to have dementia is $P(A|B)=\frac{P(A\cap B)}{P(B)}=\frac{0.04}{0.135}=0.30$  
+Answer to this question would be 30%.
 
 
 
