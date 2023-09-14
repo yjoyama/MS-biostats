@@ -116,7 +116,8 @@ Given $P(A)=0.05$, $P(A\cap B)=0.04$
 Given $P(\bar{A})=1-0.05=0.95$, $P(B\cap \bar{A})=0.095$  
 Now, $P(B)=P(A\cap B)+P(\bar{A} \cap B)=0.04+0.095=0.135$  
 Therefore, the probability of a woman with a positive CT scan findings to have dementia is $P(A|B)=\frac{P(A\cap B)}{P(B)}=\frac{0.04}{0.135}=0.30$  
-Answer to this question would be 30%.
+
+The answer to this question would be 30%.
 
 
 
