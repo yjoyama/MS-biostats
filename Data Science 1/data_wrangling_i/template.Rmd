@@ -11,9 +11,50 @@ Let's import the `FAS_litters.csv` csv.
 
 ```{r}
 litters_df =
-  read.csv("MS-biostats/Data Science 1/data_wrangling_i/data/FAS_litters.csv")
+  read.csv("/Users/yukijoyama/Library/CloudStorage/GoogleDrive-jikeyu1995@gmail.com/My Drive/version_control/MS-biostats/Data Science 1/data_wrangling_i/data/FAS_litters.csv")
 
 litters_df = 
   janitor::clean_names(litters_df)
 ```
+
+Import Pups dataset
+
+```{r}
+pups_df =
+  read.csv("/Users/yukijoyama/Library/CloudStorage/GoogleDrive-jikeyu1995@gmail.com/My Drive/version_control/MS-biostats/Data Science 1/data_wrangling_i/data/FAS_pups.csv")
+
+pups_df = 
+  janitor::clean_names(pups_df)
+```
+
+## Look at data
+
+```{r}
+litters_df
+
+head(litters_df)
+tail(litters_df)
+```
+
+You can use `view`
+
+```{r, eval=F}
+View(litters_df) 
+```
+
+Look at a data summary
+
+```{r}
+str(litters_df) 
+
+skimr::skim(litters_df)
+```
+
+
+
+
+
+
+
+
 
