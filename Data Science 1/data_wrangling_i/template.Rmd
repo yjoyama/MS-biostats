@@ -5,6 +5,9 @@ output: github_document
 
 ```{r}
 library(tidyverse)
+library(readr)
+library(readxl)
+library(haven)
 ```
 
 Let's import the `FAS_litters.csv` csv.
@@ -49,6 +52,52 @@ str(litters_df)
 
 skimr::skim(litters_df)
 ```
+
+## Options in read_*
+
+```{r}
+litters_df =
+  read_csv("/Users/yukijoyama/Library/CloudStorage/GoogleDrive-jikeyu1995@gmail.com/My Drive/version_control/MS-biostats/Data Science 1/data_wrangling_i/data/FAS_pups.csv",
+           skip = 10, col_names = F)
+```
+
+Look at NA values
+
+```{r}
+litters_df =
+  read_csv(
+    "data/FAS_litters.csv",
+    na = c("NA", 19, "."))
+```
+
+Colum types
+
+```{r}
+litters_df = read_csv(
+    "data/FAS_litters.csv",
+    col_types = 
+      cols(
+        Group = col_factor(),
+        `GD0 weight` = col_character()
+      ))
+```
+
+## Other file types
+
+Import a xlsx file first
+
+```{r}
+mlb_df =
+  read_excel("data/mlb11.xlsx")
+```
+
+Import a SAS file
+
+```{r}
+pulse_df =
+  read_sas("data/public_pulse_data.sas7bdat")
+```
+
 
 
 
