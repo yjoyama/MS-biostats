@@ -8,3 +8,51 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+```{r}
+library(tidyverse)
+```
+
+Import FAS litters and pups
+
+```{r}
+litters_df = 
+  read.csv("data/FAS_litters.csv")
+litters_df = janitor::clean_names(litters_df)
+
+pups_df = 
+  read.csv("data/FAS_pups.csv")
+pups_df = janitor::clean_names(pups_df)
+```
+
+## `select`
+
+`select` is used to select columns!
+
+```{r}
+select(litters_df, group, litter_number, gd0_weight)
+
+select(litters_df, group, gd0_weight:gd_of_birth)
+
+select(litters_df, group, starts_with("pups")) # ends_with, contains
+
+select(litters_df, group, - litter_number) # remove
+
+select(litters_df, - starts_with("pups"))
+
+select(litters_df, group, litter_id = litter_number) # renaming
+
+select(litters_df, group, litter_id = litter_number, everything()) # keep everything else
+
+select(litters_df, gd0_weight, everything())
+```
+
+
+
+
+
+
+
+
+
+
