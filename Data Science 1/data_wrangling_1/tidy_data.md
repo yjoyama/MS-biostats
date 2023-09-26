@@ -64,3 +64,55 @@ litters_df
     ##  9 #4/2/95/3-3       0   NA  
     ## 10 #4/2/95/3-3      18   NA  
     ## # ℹ 88 more rows
+
+## LoTR
+
+Import LoTR words data
+
+``` r
+fellowship_df =
+  readxl::read_excel("data/LotR_Words.xlsx", range = "B3:D6") |> 
+  mutate(movie = "fellowship")
+
+two_towers_df =
+  readxl::read_excel("data/LotR_Words.xlsx", range = "F3:H6") |> 
+  mutate(movie = "two towers")
+
+return_of_the_king_df =
+  readxl::read_excel("data/LotR_Words.xlsx", range = "J3:L6") |> 
+  mutate(movie = "return of the king")
+
+lotr_df = 
+  bind_rows(fellowship_df, two_towers_df, return_of_the_king_df) |>
+  janitor::clean_names() |> 
+  pivot_longer(
+    male:female,
+    names_to = "gender",
+    values_to = "word"
+  ) |> 
+  relocate(movie)
+
+lotr_df
+```
+
+    ## # A tibble: 18 × 4
+    ##    movie              race   gender  word
+    ##    <chr>              <chr>  <chr>  <dbl>
+    ##  1 fellowship         Elf    male     971
+    ##  2 fellowship         Elf    female  1229
+    ##  3 fellowship         Hobbit male    3644
+    ##  4 fellowship         Hobbit female    14
+    ##  5 fellowship         Man    male    1995
+    ##  6 fellowship         Man    female     0
+    ##  7 two towers         Elf    male     513
+    ##  8 two towers         Elf    female   331
+    ##  9 two towers         Hobbit male    2463
+    ## 10 two towers         Hobbit female     0
+    ## 11 two towers         Man    male    3589
+    ## 12 two towers         Man    female   401
+    ## 13 return of the king Elf    male     510
+    ## 14 return of the king Elf    female   183
+    ## 15 return of the king Hobbit male    2673
+    ## 16 return of the king Hobbit female     2
+    ## 17 return of the king Man    male    2459
+    ## 18 return of the king Man    female   268
