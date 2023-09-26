@@ -88,6 +88,27 @@ litters_df =
 litters_df
 ```
 
+```{r}
+pups_df =
+  read_csv("data/FAS_pups.csv") |> 
+  janitor::clean_names() |> 
+  mutate(
+    sex = case_match(
+      sex,
+      1 ~ "male",
+      2 ~ "female"
+    )
+  )
+
+pups_df
+
+fas_df = 
+  left_join(pups_df, litters_df, by = "litter_number")
+
+fas_df
+```
+
+
 
 
 
