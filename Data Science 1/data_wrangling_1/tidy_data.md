@@ -65,9 +65,9 @@ litters_df
     ## 10 #4/2/95/3-3      18   NA  
     ## # ℹ 88 more rows
 
-## LoTR
+## LotR
 
-Import LoTR words data
+Import LotR words data
 
 ``` r
 fellowship_df =
@@ -116,3 +116,42 @@ lotr_df
     ## 16 return of the king Hobbit female     2
     ## 17 return of the king Man    male    2459
     ## 18 return of the king Man    female   268
+
+## Revisit FAS
+
+``` r
+litters_df =
+  read_csv("data/FAS_litters.csv") |> 
+  janitor::clean_names() |> 
+  mutate(wt_gain = gd18_weight - gd0_weight) |> 
+  select(litter_number, group, wt_gain) |> 
+  separate(group, into = c("dose", "day_of_tx"), sep = 3)
+```
+
+    ## Rows: 49 Columns: 8
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr (2): Group, Litter Number
+    ## dbl (6): GD0 weight, GD18 weight, GD of Birth, Pups born alive, Pups dead @ ...
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+``` r
+litters_df
+```
+
+    ## # A tibble: 49 × 4
+    ##    litter_number   dose  day_of_tx wt_gain
+    ##    <chr>           <chr> <chr>       <dbl>
+    ##  1 #85             Con   7            15  
+    ##  2 #1/2/95/2       Con   7            15  
+    ##  3 #5/5/3/83/3-3   Con   7            15.4
+    ##  4 #5/4/2/95/2     Con   7            15.6
+    ##  5 #4/2/95/3-3     Con   7            NA  
+    ##  6 #2/2/95/3-2     Con   7            NA  
+    ##  7 #1/5/3/83/3-3/2 Con   7            NA  
+    ##  8 #3/83/3-3       Con   8            NA  
+    ##  9 #2/95/3         Con   8            NA  
+    ## 10 #3/5/2/2/95     Con   8            NA  
+    ## # ℹ 39 more rows
