@@ -1,0 +1,100 @@
+---
+title: "Airbnb"
+author: "Yuki Joyama"
+date: "2023-10-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Import AirBnb data
+```{r}
+library(tidyverse)
+library(p8105.datasets)
+library(ggridges)
+
+data(nyc_airbnb)
+```
+
+- which hosts own many listings?
+```{r}
+nyc_airbnb |> 
+  group_by(host_id, host_name) |> 
+  summarise(count = n()) |> 
+  arrange(count) |> 
+  tail()
+```
+
+- the percentage of inactive listings (no review) among all
+```{r}
+is.na(pull(nyc_airbnb, review_scores_location)) |> 
+  sum()/nrow(nyc_airbnb)*100
+```
+
+- average price
+```{r}
+nyc_airbnb |> 
+  group_by(neighbourhood_group, room_type) |> 
+  summarise(mean_price = mean(price)) |> 
+  pivot_wider(
+    names_from = room_type,
+    values_from = mean_price
+  )
+```
+
+
+```{r}
+nyc_airbnb |> 
+  filter(price < 1000, room_type == "Entire home/apt") |> 
+  ggplot(aes(x = price)) +
+  geom_histogram() +
+  facet_grid(.~ neighbourhood_group)
+```
+
+
+```{r}
+nyc_airbnb |> 
+  filter(price < 1000, room_type == "Entire home/apt", neighbourhood_group == "Manhattan") |>
+  group_by(neighbourhood) |> 
+  summarise(
+    n_apt = n(),
+    mean_price = mean(price)) |> 
+  arrange(desc(mean_price)) 
+```
+
+```{r}
+nyc_airbnb |> 
+  filter(price < 1000, room_type == "Entire home/apt", neighbourhood_group == "Manhattan") |>
+  mutate(neighbourhood = fct_reorder(neighbourhood, price)) |> 
+  ggplot(aes(y = neighbourhood, x = price)) +
+  geom_density_ridges()
+```
+
+
+# try to make a map
+```{r}
+nyc_airbnb |> 
+  filter(price < 1000, room_type == "Entire home/apt", neighbourhood_group == "Manhattan") |>
+  ggplot(aes(x = lat, y = long, color = price)) +
+  geom_point()
+```
+
+Try something else entirely.
+
+```{r}
+library(leaflet)
+
+nyc_airbnb |> 
+  filter(price < 1000, room_type == "Entire home/apt", neighbourhood_group == "Manhattan") |>
+  sample_n(500) |> 
+  leaflet() |> 
+  addTiles() |> 
+  addMarkers(~lat, ~long)
+```
+
+
+
+
+
